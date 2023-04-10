@@ -1,5 +1,13 @@
-import React, { DetailedHTMLProps, HTMLAttributes, useState } from 'react';
+import React, {
+  DetailedHTMLProps,
+  HTMLAttributes,
+  ReactNode,
+  useState,
+} from 'react';
 import {
+  SearchOutlined,
+  BookOutlined,
+  BookTwoTone,
   DesktopOutlined,
   FileOutlined,
   PieChartOutlined,
@@ -26,24 +34,18 @@ function getItem(
     label,
   } as MenuItem;
 }
-
 const items: MenuItem[] = [
-  getItem('Option 1', '1', <PieChartOutlined />),
-  getItem('Option 2', '2', <DesktopOutlined />),
-  getItem('User', 'sub1', <UserOutlined />, [
-    getItem('Tom', '3'),
-    getItem('Bill', '4'),
-    getItem('Alex', '5'),
+  getItem('Wróć do czytania', '1', <BookOutlined />),
+  getItem('Inne pozycje autora', '2', <BookTwoTone />, [
+    getItem('Kwiaty zła', '3'),
+    getItem('Jutro', '4'),
+    getItem('Czytanie grozi zakochaniem', '5'),
   ]),
-  getItem('Team', 'sub2', <TeamOutlined />, [
-    getItem('Team 1', '6'),
-    getItem('Team 2', '8'),
-  ]),
-  getItem('Files', '9', <FileOutlined />),
+  getItem('Szukaj', '6', <SearchOutlined />),
 ];
 
 interface WrapperProps {
-  children: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>;
+  children: ReactNode;
 }
 
 export const Wrapper: React.FC<WrapperProps> = ({ children }) => {
@@ -77,13 +79,13 @@ export const Wrapper: React.FC<WrapperProps> = ({ children }) => {
         <Header style={{ padding: 0, background: colorBgContainer }} />
         <Content style={{ margin: '0 16px' }}>
           <Breadcrumb style={{ margin: '16px 0' }}>
-            <Breadcrumb.Item>User</Breadcrumb.Item>
-            <Breadcrumb.Item>Bill</Breadcrumb.Item>
+            <Breadcrumb.Item>Czytaj dalej</Breadcrumb.Item>
+            <Breadcrumb.Item>Pozycja</Breadcrumb.Item>
           </Breadcrumb>
           <main>{children}</main>
         </Content>
         <Footer style={{ textAlign: 'center' }}>
-          Ant Design ©2023 Created by Ant UED
+          Awesome Library ©2023 Stworzone przez Mica Michał Pełka
         </Footer>
       </Layout>
     </Layout>
