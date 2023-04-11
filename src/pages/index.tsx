@@ -1,13 +1,15 @@
 import Head from 'next/head';
-import Image from 'next/image';
 import { Inter } from 'next/font/google';
-import styles from 'src/styles/Home.module.css';
 import { Wrapper } from '../hoc/Layout/Layout';
 import { MainView } from '../components/MainPage/MainView';
-
-const inter = Inter({ subsets: ['latin'] });
+import { prisma } from '../../lib/prisma';
+import { GetStaticProps } from 'next';
 
 export default function Home() {
+  export async function loadAuthors() {
+    const res = await fetch[Symbol]();
+  }
+  console.log(authors);
   return (
     <>
       <Head>
