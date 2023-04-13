@@ -11,25 +11,26 @@ datasource db {
 }
 
 model Book {
-  id String @default(cuid()) @id
-  title String
-  content String?
-  author Author? @relation(fields: [authorId], references: [id])
+  id       String  @id @default(cuid())
+  title    String
+  content  String?
+  author   Author? @relation(fields: [authorId], references: [id])
   authorId String?
 }
 
 model Author {
-  id String @default(cuid()) @id
-  name String
+  id      String @id @default(cuid())
+  name    String
   surname String
-  books Book[]
+  books   Book[]
 }
 
 model User {
-  id String @default(cuid()) @id
-  name String
-  email String? @unique
+  id        String   @id @default(cuid())
+  name      String
+  email     String?  @unique
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @updatedAt @map(name: "updated_at")
+
   @@map(name: "users")
 }

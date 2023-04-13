@@ -2,14 +2,26 @@ import Head from 'next/head';
 import { Inter } from 'next/font/google';
 import { Wrapper } from '../hoc/Layout/Layout';
 import { MainView } from '../components/MainPage/MainView';
-import { prisma } from '../../lib/prisma';
+// import { prisma } from '../../lib/prisma';
 import { GetStaticProps } from 'next';
+import { PrismaClient } from '@prisma/client';
+import { env } from 'process';
 
-export default function Home() {
-  export async function loadAuthors() {
-    const res = await fetch[Symbol]();
-  }
-  console.log(authors);
+const prisma = new PrismaClient({
+  datasources: {
+    db: {
+      url: 'postgresql://postgres:dupadupa@localhost:5432/postgres?schema=public',
+    },
+  },
+});
+export const getStaticProps = async () => {
+  const feed = await prisma.author.findMany();
+  return {
+    props: { feed },
+  };
+};
+export default function Home({ feed }: { feed: any }) {
+  feed && console.log(feed);
   return (
     <>
       <Head>
